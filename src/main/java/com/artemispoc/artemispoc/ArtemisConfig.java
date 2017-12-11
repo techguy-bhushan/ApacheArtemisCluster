@@ -40,6 +40,7 @@ public class ArtemisConfig {
                 new ActiveMQJMSConnectionFactory( false, transportConfiguration);
         activeMQJMSConnectionFactory.setPassword("admin");
         activeMQJMSConnectionFactory.setUser("admin");
+        activeMQJMSConnectionFactory.setClientID("admin");
         return activeMQJMSConnectionFactory;
     }
 
@@ -53,6 +54,8 @@ public class ArtemisConfig {
         defaultMessageListenerContainer.setDestination(topic);
         defaultMessageListenerContainer.setMessageListener(consumer);
         defaultMessageListenerContainer.setSessionAcknowledgeMode(1);
+       /* defaultMessageListenerContainer.setSubscriptionName("mySub");
+        defaultMessageListenerContainer.setSubscriptionDurable(true);*/
         defaultMessageListenerContainer.setMessageConverter(messageConverter);
         return defaultMessageListenerContainer;
     }
@@ -66,6 +69,8 @@ public class ArtemisConfig {
         defaultMessageListenerContainer.setDestination(topic);
         defaultMessageListenerContainer.setMessageListener(consumer);
         defaultMessageListenerContainer.setSessionAcknowledgeMode(1);
+     /*   defaultMessageListenerContainer.setSubscriptionName("mySub");
+        defaultMessageListenerContainer.setSubscriptionDurable(true);*/
         defaultMessageListenerContainer.setMessageConverter(messageConverter);
         return defaultMessageListenerContainer;
 
