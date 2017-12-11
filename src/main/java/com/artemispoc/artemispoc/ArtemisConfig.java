@@ -43,14 +43,6 @@ public class ArtemisConfig {
         return activeMQJMSConnectionFactory;
     }
 
-    @Bean("connectionFactory2")
-    public ConnectionFactory connectionFactory2() throws JMSException {
-        ActiveMQJMSConnectionFactory activeMQJMSConnectionFactory =
-                new ActiveMQJMSConnectionFactory( false, new TransportConfiguration(NettyConnectorFactory.class.getName(), getParams("61619")));
-        activeMQJMSConnectionFactory.setPassword("admin");
-        activeMQJMSConnectionFactory.setUser("admin");
-        return activeMQJMSConnectionFactory;
-    }
 
     // We create a JMS listenerContainer1 which is a connection to  artemis server 1
     @Bean
@@ -67,7 +59,7 @@ public class ArtemisConfig {
 
     // a JMS listenerContainer which is a connection to artimes server 2
     @Bean
-    public MessageListenerContainer listenerContainer2(@Qualifier("connectionFactory2")ConnectionFactory connectionFactory, Consumer consumer, SimpleMessageConverter messageConverter, @Qualifier("topic") Topic topic) {
+    public MessageListenerContainer listenerContainer2(@Qualifier("connectionFactory")ConnectionFactory connectionFactory, Consumer consumer, SimpleMessageConverter messageConverter, @Qualifier("topic") Topic topic) {
         DefaultMessageListenerContainer defaultMessageListenerContainer =
                 new DefaultMessageListenerContainer();
         defaultMessageListenerContainer.setConnectionFactory(connectionFactory);
