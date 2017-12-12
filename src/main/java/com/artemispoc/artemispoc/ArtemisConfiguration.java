@@ -30,7 +30,7 @@ public class ArtemisConfiguration {
 
     @Bean("amqTransportConfiguration")
     public TransportConfiguration amqTransportConfiguration() {
-        return new TransportConfiguration(NettyConnectorFactory.class.getName(), getParams("9616"));
+        return new TransportConfiguration(NettyConnectorFactory.class.getName(), getParams("61616"));
     }
 
 
@@ -74,7 +74,6 @@ public class ArtemisConfiguration {
         defaultMessageListenerContainer.setClientId("admin");
         defaultMessageListenerContainer.setMessageConverter(messageConverter);
         return defaultMessageListenerContainer;
-
     }
 
     @Bean("topic")
