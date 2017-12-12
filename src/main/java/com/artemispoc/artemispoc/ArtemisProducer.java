@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.jms.*;
@@ -13,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 * @author Bhushan Uniyal
 * */
 @Component
-public class Producer {
+public class ArtemisProducer {
 
     @Autowired
     @Qualifier("connection")
@@ -24,7 +23,7 @@ public class Producer {
 
     public static AtomicInteger produceCount = new AtomicInteger(0);
 
-    Logger log = LoggerFactory.getLogger(Consumer.class);
+    Logger log = LoggerFactory.getLogger(ArtemisConsumer.class);
 
 
     public void send(String msg) {

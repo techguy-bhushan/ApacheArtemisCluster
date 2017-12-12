@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ArtemisTest {
 
     @Autowired
-    private Producer producer;
+    private ArtemisProducer producer;
 
     /*
     * We will check in this test case before send message count and then after message send count
@@ -28,8 +28,8 @@ public class ArtemisTest {
     public void testMqBridge() throws InterruptedException {
 
         // Assert count 0, because no message send to jms
-        assertThat(Producer.produceCount.get()).isEqualTo(0);
-        assertThat(Consumer.consumeCount.get()).isEqualTo(0);
+        assertThat(ArtemisProducer.produceCount.get()).isEqualTo(0);
+        assertThat(ArtemisConsumer.consumeCount.get()).isEqualTo(0);
 
         // 5 messages will send on A-MQ producer
         IntStream.range(0,5).forEach((int i) -> {
@@ -38,10 +38,10 @@ public class ArtemisTest {
 
         Thread.sleep(1000);
         // 5 message will produce by Artemis producer
-        assertThat(Producer.produceCount.get()).isEqualTo(5);
+        assertThat(ArtemisProducer.produceCount.get()).isEqualTo(5);
 
         // 5 message will consume by Artemis consumer
-        assertThat(Consumer.consumeCount.get()).isEqualTo(5);
+        assertThat(ArtemisConsumer.consumeCount.get()).isEqualTo(5);
 
     }
 }

@@ -14,10 +14,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 * @author Bhushan Uniyal
 * */
 @Component
-public class Consumer implements MessageListener{
+public class ArtemisConsumer implements MessageListener{
     @Value("${sample}")
     String topic;
-    Logger log = LoggerFactory.getLogger(Consumer.class);
+    Logger log = LoggerFactory.getLogger(ArtemisConsumer.class);
     public static AtomicInteger consumeCount = new AtomicInteger(0);
 
     @Override
