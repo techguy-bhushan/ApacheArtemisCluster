@@ -143,7 +143,7 @@ under the License.
             <connector-ref>netty-connector</connector-ref>
             <retry-interval>500</retry-interval>
             <use-duplicate-detection>true</use-duplicate-detection>
-            <message-load-balancing>STRICT</message-load-balancing>
+            <message-load-balancing>ON_DEMAND</message-load-balancing>
             <max-hops>1</max-hops>
             <static-connectors>
                <connector-ref>server0-connector</connector-ref>
@@ -179,6 +179,7 @@ under the License.
             <auto-create-addresses>true</auto-create-addresses>
             <auto-create-jms-queues>true</auto-create-jms-queues>
             <auto-create-jms-topics>true</auto-create-jms-topics>
+            <redistribution-delay>0</redistribution-delay>
          </address-setting>
       </address-settings>
 

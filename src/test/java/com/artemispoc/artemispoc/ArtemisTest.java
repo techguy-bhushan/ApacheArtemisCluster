@@ -32,16 +32,16 @@ public class ArtemisTest {
         assertThat(ArtemisConsumer.consumeCount.get()).isEqualTo(0);
 
         // 5 messages will send on A-MQ producer
-        IntStream.range(0,5).forEach((int i) -> {
+        IntStream.range(0,50).forEach((int i) -> {
             producer.send("Test message:"+i);
         });
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         // 5 message will produce by Artemis producer
-        assertThat(ArtemisProducer.produceCount.get()).isEqualTo(5);
+        assertThat(ArtemisProducer.produceCount.get()).isEqualTo(50);
 
         // 5 message will consume by Artemis consumer
-        assertThat(ArtemisConsumer.consumeCount.get()).isEqualTo(5);
+        assertThat(ArtemisConsumer.consumeCount.get()).isEqualTo(50);
 
     }
 }

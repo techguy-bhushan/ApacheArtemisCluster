@@ -46,7 +46,7 @@ public class ArtemisConfiguration {
 
     // We create a JMS listenerContainer1 which is a connection to  artemis server 1
     @Bean
-    public MessageListenerContainer listenerContainer1(@Qualifier("connectionFactory") ConnectionFactory connectionFactory, ArtemisConsumer consumer, SimpleMessageConverter messageConverter, @Qualifier("topic") Topic topic) {
+    public MessageListenerContainer listenerContainer1(@Qualifier("connectionFactory") ConnectionFactory connectionFactory, ArtemisConsumer consumer, @Qualifier("topic") Topic topic) {
         DefaultMessageListenerContainer defaultMessageListenerContainer =
                 new DefaultMessageListenerContainer();
         defaultMessageListenerContainer.setConnectionFactory(connectionFactory);
@@ -56,23 +56,9 @@ public class ArtemisConfiguration {
         defaultMessageListenerContainer.setSubscriptionDurable(true);
         defaultMessageListenerContainer.setDurableSubscriptionName("sub");
         defaultMessageListenerContainer.setClientId("admin");
+/*
         defaultMessageListenerContainer.setMessageConverter(messageConverter);
-        return defaultMessageListenerContainer;
-    }
-
-    // a JMS listenerContainer which is a connection to artimes server 2
-    @Bean
-    public MessageListenerContainer listenerContainer2(@Qualifier("connectionFactory")ConnectionFactory connectionFactory, ArtemisConsumer consumer, SimpleMessageConverter messageConverter, @Qualifier("topic") Topic topic) {
-        DefaultMessageListenerContainer defaultMessageListenerContainer =
-                new DefaultMessageListenerContainer();
-        defaultMessageListenerContainer.setConnectionFactory(connectionFactory);
-        defaultMessageListenerContainer.setDestination(topic);
-        defaultMessageListenerContainer.setMessageListener(consumer);
-        defaultMessageListenerContainer.setSessionAcknowledgeMode(1);
-        defaultMessageListenerContainer.setDurableSubscriptionName("sub");
-        defaultMessageListenerContainer.setSubscriptionDurable(true);
-        defaultMessageListenerContainer.setClientId("admin");
-        defaultMessageListenerContainer.setMessageConverter(messageConverter);
+*/
         return defaultMessageListenerContainer;
     }
 
