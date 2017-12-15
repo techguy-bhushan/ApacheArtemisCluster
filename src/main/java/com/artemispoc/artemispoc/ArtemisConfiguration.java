@@ -28,9 +28,25 @@ public class ArtemisConfiguration {
     @Value("${sample}")
     String topicDestination;
 
+    @Value("${amq.client.id}")
+    String clientId;
+
+    @Value("${amq.subscription.name}")
+    String subscription;
+
+    @Value("${amq.username}")
+    String userName;
+
+    @Value("${amq.password}")
+    String password;
+
+    @Value("${amq.port}")
+    String port;
+
+
     @Bean("amqTransportConfiguration")
     public TransportConfiguration amqTransportConfiguration() {
-        return new TransportConfiguration(NettyConnectorFactory.class.getName(), getParams("61616"));
+        return new TransportConfiguration(NettyConnectorFactory.class.getName(), getParams(port));
     }
 
 
@@ -38,8 +54,8 @@ public class ArtemisConfiguration {
     public ConnectionFactory activeMQJMSConnectionFactory(@Qualifier("amqTransportConfiguration") TransportConfiguration transportConfiguration) throws JMSException {
         ActiveMQJMSConnectionFactory activeMQJMSConnectionFactory =
                 new ActiveMQJMSConnectionFactory( false, transportConfiguration);
-        activeMQJMSConnectionFactory.setPassword("admin");
-        activeMQJMSConnectionFactory.setUser("admin");
+        activeMQJMSConnectionFactory.setPassword(password);
+        activeMQJMSConnectionFactory.setUser(userName);
         return activeMQJMSConnectionFactory;
     }
 
@@ -54,8 +70,8 @@ public class ArtemisConfiguration {
         defaultMessageListenerContainer.setMessageListener(consumer);
         defaultMessageListenerContainer.setSessionAcknowledgeMode(1);
         defaultMessageListenerContainer.setSubscriptionDurable(true);
-        defaultMessageListenerContainer.setDurableSubscriptionName("sub");
-        defaultMessageListenerContainer.setClientId("admin");
+        defaultMessageListenerContainer.setDurableSubscriptionName(subscription);
+        defaultMessageListenerContainer.setClientId(clientId);
         defaultMessageListenerContainer.setMessageConverter(messageConverter);
         return defaultMessageListenerContainer;
     }
@@ -69,9 +85,9 @@ public class ArtemisConfiguration {
         defaultMessageListenerContainer.setDestination(topic);
         defaultMessageListenerContainer.setMessageListener(consumer);
         defaultMessageListenerContainer.setSessionAcknowledgeMode(1);
-        defaultMessageListenerContainer.setDurableSubscriptionName("sub");
+        defaultMessageListenerContainer.setDurableSubscriptionName(subscription);
         defaultMessageListenerContainer.setSubscriptionDurable(true);
-        defaultMessageListenerContainer.setClientId("admin");
+        defaultMessageListenerContainer.setClientId(clientId);
         defaultMessageListenerContainer.setMessageConverter(messageConverter);
         return defaultMessageListenerContainer;
     }
