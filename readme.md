@@ -9,11 +9,11 @@ or Download []JBoss AMQ](https://developers.redhat.com/products/amq/download)
 
 this implementation is based on clustered static discovery
 
-Please change the user name and password with your server username and password in ArtemisConfiguration.java -> activeMQJMSConnectionFactory
+Please change the user name and password with your server username and password in application.properties
 
 ```
-activeMQJMSConnectionFactory.setPassword("admin");
-   activeMQJMSConnectionFactory.setUser("admin");
+amq.username=admin
+amq.password=admin
 ```
 
 Here use are using **STRICT** value of message-load-balancing in broker.xml.
@@ -24,4 +24,4 @@ Using STRICT is like setting the legacy forward-when-no-consumers parameter to t
 
 
 **NOTE**: HERE we are using 2 nodes inside of cluster so we are using 2 listener in ArtemisConfiguration
-here is [reason][https://stackoverflow.com/questions/47779767/apache-artemis-need-to-created-many-connection-as-many-server-node-with-strict-c/47780473?noredirect=1#comment82554004_47780473]
+here is [reason](https://stackoverflow.com/questions/47779767/apache-artemis-need-to-created-many-connection-as-many-server-node-with-strict-c/47780473?noredirect=1#comment82554004_47780473)
