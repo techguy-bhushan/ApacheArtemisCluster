@@ -23,7 +23,7 @@ public class ArtemisProducer {
 
     public static AtomicInteger produceCount = new AtomicInteger(0);
 
-    Logger log = LoggerFactory.getLogger(ArtemisConsumer.class);
+    Logger log = LoggerFactory.getLogger(ArtemisProducer.class);
 
 
     public void send(String msg) {
